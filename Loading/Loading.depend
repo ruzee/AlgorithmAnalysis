@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1581770804 source:/home/czg/Loading/main.cpp
+	<iostream>
+	<string.h>
+
