@@ -11,6 +11,18 @@ int cmpfunc(const void * a,  const void * b)
     return -((*(int*)a - *(int*)b));
 }
 
+//calculate the total loading(first i loading) in the sheep
+//so as to check if xi can be loaded onto sheep one
+int canLoadi(int *W,int *x,int i)
+{
+    int k,sum;
+    sum=0;
+    for(k=0;k<i;k++) //check first i-1 containers loading
+        sum+=W[k]*x[k];
+    return sum+W[i]; //loading i container onto sheep
+
+}
+
 int Loading(int W[], int n,int *x, int c)
 {
     int B = c, best = c, i = 0;
@@ -20,7 +32,7 @@ int Loading(int W[], int n,int *x, int c)
 L3:
     while (i < n)
     {
-        if (W[i] <= B)
+        if(canLoadi(W,xx,i)<=c)//check if exceed the capcity of sheep under load i
         {
             B -= W[i];
             xx[i] = 1;
@@ -38,7 +50,7 @@ L3:
     i--;
     while (i > 0 && xx[i] == 0)
         i--;
-    if (xx[i] == 1)
+    if (xx[i] == 1)//回溯
     {
         xx[i] = 0;
         B += W[i];
