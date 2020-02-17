@@ -1,6 +1,7 @@
-#define MAXSIZE 100
 #include <stdio.h>
-static int isOK(int n,int AdjacencyTable[][MAXSIZE],int *Color,int k)
+#include "GraphColor.h"
+
+int OK(int n,int AdjacencyTable[][MAXSIZE],int *Color,int k)
 {
     int i;
     for(i=0;i<n;i++)
@@ -21,7 +22,7 @@ void outputColorResult(int n,int* color)
     printf("\n");
 }
 
-
+//recursion function
 void backtrack(int n,int m,int AdjacencyTable[][MAXSIZE],int *Color,int k)
 {
     static int cnt=0;
@@ -32,7 +33,7 @@ void backtrack(int n,int m,int AdjacencyTable[][MAXSIZE],int *Color,int k)
         for(int i=1;i<=m;i++)
         {
             Color[k]=i;
-            if(isOK(n,AdjacencyTable,Color,k))
+            if(OK(n,AdjacencyTable,Color,k))
             {
                 printf("trial:%d node:%d  color:%d\n",++cnt,k,i);  //trace mark
                 backtrack(n,m,AdjacencyTable,Color,k+1);
@@ -65,10 +66,4 @@ void TestBacktrack()
     fclose(file);
     //start to color
     backtrack(n,m,AdjacencyTable,Color,0);
-}
-
-int main1(int argc,char* argv[])
-{
-    TestBacktrack();
-    return 0;
 }

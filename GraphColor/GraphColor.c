@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-const int MAXSIZE = 100;
+#include "GraphColor.h"
 
 //check whether there is conflict between the node k and its adjacent nodes
 int isOK(int k,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
@@ -105,10 +104,4 @@ void TestGraphColor()
 
     //start to color
     GraphColor(n,m,AdjacencyTable,Color);
-}
-
-int main(int argc,char* argv[])
-{
-    TestGraphColor();
-    return 0;
 }
