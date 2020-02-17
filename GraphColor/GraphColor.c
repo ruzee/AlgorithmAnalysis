@@ -33,22 +33,19 @@ void printResult(int n,int* color)
 void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
 {
     int k = 0;//the depth of search tree
-    int i;
+    static int cnt=1;//number of trial
 
     while(k >= 0)//k,the depth of search tree
     {
-        //color[k]++;//the current color is not ok,use the next color
+
+        color[k]++;//the current color is not ok,use the next color
         //check whether the selected color is ok
-//        while(color[k] <= m && !isOK(k,AdjacencyTable,color))
-//        {
-//            color[k]++;
-//        }
-        for(i=1;i<=m;i++)
+        while(color[k] <= m && !isOK(k,AdjacencyTable,color))
         {
-            color[k]=i;
-            if(isOK(k,AdjacencyTable,color))
-                break;
+            color[k]++;
         }
+
+        //printf("trial:%d node:%d color:%d\n",cnt++,k,color[k]);
 
         if(color[k] <= m)//the color of node k if ok,
         {
@@ -68,7 +65,7 @@ void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
         {
             //clear the color of current node k
             color[k] = 0;
-            //trace back the parent node
+            //trace back the parent node,when k=-1,jump out of while loop
             k--;
         }
     }
