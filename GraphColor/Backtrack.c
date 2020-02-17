@@ -4,7 +4,7 @@
 int OK(int n,int AdjacencyTable[][MAXSIZE],int *Color,int k)
 {
     int i;
-    for(i=0;i<n;i++)
+    for(i=0; i<n; i++)
         if(AdjacencyTable[k][i] && Color[i]==Color[k])
             return 0;
     return 1;
@@ -30,7 +30,7 @@ void backtrack(int n,int m,int AdjacencyTable[][MAXSIZE],int *Color,int k)
         outputColorResult(n,Color);//output the solution
     else
     {
-        for(int i=1;i<=m;i++)
+        for(int i=1; i<=m; i++)
         {
             Color[k]=i;
             if(OK(n,AdjacencyTable,Color,k))

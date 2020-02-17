@@ -21,12 +21,12 @@ void printResult(int n,int* color)
 {
     static int cnt=0;
     int i ;
-    printf("solution %d: ",++cnt);
+    printf("\nsolution %d: ",++cnt);
     for(i = 0 ; i < n ; i++)
     {
         printf("%d ",color[i]);
     }
-    printf("\n");
+    printf("\n\n");
 }
 
 //non recursion function
@@ -37,7 +37,6 @@ void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
 
     while(k >= 0)//k,the depth of search tree
     {
-
         color[k]++;//the current color is not ok,use the next color
         //check whether the selected color is ok
         while(color[k] <= m && !isOK(k,AdjacencyTable,color))
@@ -45,28 +44,28 @@ void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
             color[k]++;
         }
 
-        printf("trial:%d node:%d color:%d\n",cnt++,k,color[k]);
-
-        if(color[k] <= m)//the color of node k if ok,
-        {
-            //and traverse to the leaf node,found a color solution
-            if(k == n-1)
-            {
-                printResult(n,color);//output the color solution
-                color[k]=0;//clear the color of current node k
-                k--;//trace back the parent node
-            }
-            else
-            {
-                k++;//continue the next node
-            }
-        }
-        else//All the color has been tried,but no color can be ok
+        if(color[k] > m)//All the color has been tried,but no color can be ok for node k
         {
             //clear the color of current node k
             color[k] = 0;
             //trace back the parent node,when k=-1,jump out of while loop
             k--;
+            continue;
+        }
+
+        printf("trial:%d node:%d color:%d\n",cnt++,k,color[k]);
+
+        //the color of node k if ok,
+        //and traverse to the leaf node,found a color solution
+        if(k == n-1)
+        {
+            printResult(n,color);//output the color solution
+            color[k]=0;//clear the color of current node k
+            k--;//trace back the parent node
+        }
+        else
+        {
+            k++;//continue the next node
         }
     }
 }
