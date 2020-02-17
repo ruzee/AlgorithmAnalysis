@@ -30,6 +30,7 @@ void printResult(int n,int* color)
     printf("\n");
 }
 
+//non recursion function
 void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
 {
     int k = 0;//the depth of search tree
@@ -45,7 +46,7 @@ void GraphColor(int n,int m,int AdjacencyTable[MAXSIZE][MAXSIZE],int* color)
             color[k]++;
         }
 
-        //printf("trial:%d node:%d color:%d\n",cnt++,k,color[k]);
+        printf("trial:%d node:%d color:%d\n",cnt++,k,color[k]);
 
         if(color[k] <= m)//the color of node k if ok,
         {
