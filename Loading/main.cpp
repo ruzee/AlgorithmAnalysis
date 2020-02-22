@@ -76,10 +76,15 @@ int SheepOneLoad(int *W,int *x,int n)
 
 void TestLoading()
 {
-    int c1 = 152;//sheep one capacity
-    int c2 = 130;
+//    int c1 = 152;//sheep one capacity
+//    int c2 = 130;
+//    int W[] = {40, 90, 80, 10,  30, 20, 12 };//container weight
 
-    int W[] = {40, 90, 80, 10,  30, 20, 12 };//container weight
+    int c1 = 14;//sheep one capacity,
+    int c2 = 15;
+    int W[] = {3,10,6,2,1,7 };//container weight
+
+
     int n=sizeof(W)/sizeof(*W);//number of containers
     int *x;
     x = new int[n];
